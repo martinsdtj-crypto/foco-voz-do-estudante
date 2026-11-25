@@ -1,0 +1,13 @@
+# Configuração pessoal e cópias com dados reais
+apoio/configuracao.local.php
+.env
+.env.*
+!.env.example
+backups/
+*.log
+*.zip
+*.sql.gz
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

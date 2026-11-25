@@ -1,0 +1,38 @@
+-- Instalação independente: Voz do Estudante.
+CREATE DATABASE IF NOT EXISTS cv5_voz CHARACTER SET utf8mb4;
+USE cv5_voz;
+SET NAMES utf8mb4;
+
+CREATE TABLE IF NOT EXISTS estudantes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
+    email VARCHAR(160) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS mensagens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(24) UNIQUE NOT NULL,
+    tipo VARCHAR(20) NOT NULL,
+    categoria VARCHAR(80) NOT NULL,
+    mensagem TEXT NOT NULL,
+    estudante_id INT NULL,
+    nome VARCHAR(120) NOT NULL DEFAULT '',
+    contacto VARCHAR(160) NOT NULL DEFAULT '',
+    estado VARCHAR(20) NOT NULL DEFAULT 'Recebida',
+    resposta TEXT,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (estudante_id) REFERENCES estudantes(id)
+);
+
+CREATE TABLE IF NOT EXISTS formador (id INT PRIMARY KEY, senha VARCHAR(255) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS actividades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
+    email VARCHAR(160) NOT NULL DEFAULT '',
+    perfil VARCHAR(20) NOT NULL,
+    acao VARCHAR(240) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
